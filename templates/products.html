@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Products of the category {{name}}</h1>
+        <h3>Product List</h3>
+        {% if p|length == 0 %}
+        <h5>No Products found. Add the products now?</h5>
+        {% else %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Expiry Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for products in p %}
+                <tr>
+                    <td>{{ products.product_name }}</td>
+                    <td>{{ products.product_price }}</td>
+                    <td>{{ products.product_quantity }}</td>
+                    <td>{{ products.expiry_date }}</td>
+                    <td>
+                        <a href="/{{products.product_id}}/delete_product" class="btn btn-danger btn-sm">DELETE</a>
+                        <a href="/{{products.product_id}}/update_product" class="btn btn-primary btn-sm">UPDATE</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+        <div class="d-flex justify-content-between">
+            <a href="/admin/home" class="btn btn-secondary">Admin</a>
+            <a href="/{{cat_id}}/add_product" class="btn btn-success">ADD</a>
+        </div>
+    </div>
+</body>
+</html>

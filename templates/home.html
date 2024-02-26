@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: rgb(236, 238, 236);
+    }
+
+    .navbar {
+      background-color: #3d6a03;
+      margin-bottom:20px;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar li {
+      margin: 0 15px;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      color: #fff;
+      background-color: #0563c8;
+    }
+
+    .search-form {
+      display: flex;
+    }
+
+    .search-bar {
+      width: 200px;
+      padding: 6px 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .search-button {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      background-color: #007bff;
+      cursor: pointer;
+    }
+
+    .login-button, .signup-button, .cart-button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-button {
+      background-color: #007bff;
+    }
+
+    .signup-button {
+      background-color: #28a745;
+    }
+
+    .cart-button {
+      background-color: #270266;
+    }
+
+    .category-container {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 50px;
+    }
+
+    .category-card {
+      
+      flex-basis: 33.33%;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #f8f8f8;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .category-card:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .category-card h5 {
+      margin: 6px 0;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .category-image {
+      width: 350px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .product-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .product-table th, .product-table td {
+      border: 1px solid #fcfafa;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .product-table th {
+      background-color: #f2f2f2;
+    }
+
+    .product-table tr:hover {
+      background-color: #89b88e;
+    }
+
+    .new-products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .new-product {
+      width: 250px;
+      margin: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .new-product img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    /* Additional Custom Styles */
+    .logo img {
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    h1, h2, h3, h4, h5 {
+      margin-bottom: 20px;
+    }
+
+    .container {
+      margin: 0 auto;
+      max-width: 1200px;
+    }
+
+    .d-flex {
+      display: flex;
+    }
+
+    .justify-content-between {
+      justify-content: space-between;
+    }
+
+    .mt-4 {
+      margin-top: 20px;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .btn {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="logo">
+      <span style="color: #fff; font-weight: bold;"><h3>Grocery Store</h3></span>
+    </div>
+
+    {% if meth=='get' %}
+      <div class="auth-buttons">
+        <a href="/cart" class="cart-button">Cart</a>
+        
+      </div>
+      {% include 'searchbar.html' %}
+      <a href="/admin/login" class="signup-button">Admin</a>
+    {% endif %}
+  </div>
+
+  {% if meth == 'get' %}
+    <!-- Category Cards Section -->
+    <div class="container category-container">
+    <div class="row">
+      {% for c in cate %}
+        <div class="col-md-6">
+          <div class="category-card">
+            <a href="/{{c.category_id}}">
+            <img src="/static/Category_image/{{ c.category_name }}.jpg" class="category-image" alt="{{ c.category_name }}">
+            <h5>{{ c.category_name }}</h5>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+    </div>
+
+    <!-- Product List Table -->
+    <div class="container mt-4">
+      {% if all_pro|length == 0 %}
+        <h5>No Products found</h5>
+      {% else %}
+        <h3 class="text-center">Product List</h3>
+        <table class="product-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Expiry Date</th>
+              <th>Images</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for products in all_pro %}
+              <tr>
+                <td>{{ products.product_name }}</td>
+                <td>{{ products.product_price }}</td>
+                <td>{{ products.expiry_date }}</td>
+                <td>
+                  <img src="/static/Product_image/{{ products.product_name }}.jpg" alt="{{ products.product_name }}" width="120" height="90" />
+                </td>
+                {% if products.product_quantity != 0 %}
+                  <td>
+                    <a href="/add_to_cart/{{ products.product_id }}" class="btn btn-danger btn-sm">ADD TO CART</a>
+                  </td>
+                {% else %}
+                  <td>
+                    OUT OF STOCK
+                  </td>
+                {% endif %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
+      <div class="d-flex justify-content-between">
+        <a href="/" class="btn btn-secondary">Home Page</a>
+      </div>
+    </div>
+
+    <!-- New Products Section -->
+    <h2 class="text-center mt-5">New Products</h2>
+    <div class="container new-products">
+      {% for p in pro %}
+        <div class="new-product">
+          <h3>{{ p.product_name }}</h3>
+          <img src="/static/Product_image/{{ p.product_name }}.jpg" alt="{{ p.product_name }}">
+        </div>
+      {% endfor %}
+    </div>
+
+  {% else %}
+    <!-- Searched Product Section -->
+    <div class="container">
+      <h4 class="text-center mt-5">Searched Product</h4>
+      {% if posts|length != 0 %}
+        <table class="product-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Expiry Date</th>
+              <th>Images</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for post in posts %}
+              <tr>
+                <td>{{ post.product_name }}</td>
+                <td>{{ post.product_price }}</td>
+                <td>{{ post.expiry_date }}</td>
+                <td>
+                  <img src="static/Product_image/{{ post.product_name }}.jpg" alt="{{ post.product_name }}" width="120" height="90" />
+                </td>
+                {% if post.product_quantity != 0 %}
+                  <td>
+                    <a href="/add_to_cart/{{ post.product_id }}" class="btn btn-danger btn-sm">ADD TO CART</a>
+                  </td>
+                {% else %}
+                  <td>
+                    OUT OF STOCK
+                  </td>
+                {% endif %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        
+      {% endif %}
+      
+    </div>
+        <div style="margin-top: 50px;">
+        {% if cats|length!=0 %}
+        <div class="container category-container">
+          <div class="row">
+            {% for c in cats %}
+              <div class="col-md-6">
+                  <a href="/{{c.category_id}}">
+                  <img src="/static/Category_image/{{ c.category_name }}.jpg" class="category-image" alt="{{ c.category_name }}">
+                  <h5>{{ c.category_name }}</h5>
+                  </a>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          
+        </div>
+        {% endif %}
+    <div>
+      {% if cats|length==0 and posts|length==0 %}
+        <h2 style="text-align: center;"> No products found</h2>
+      {% endif %}
+    </div>
+        <a href="/" class="btn btn-danger btn-sm">Go Back</a>
+  {% endif %}
+
+</body>
+</html>
+
+

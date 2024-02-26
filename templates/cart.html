@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:#d7e3f4
+        }
+        h1 {
+            text-align: center;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #050505;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 10px;
+        }
+        .total-amount {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        a {
+            display: block;
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        a:hover {
+            background-color: #45a049;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 24px;
+            }
+            table {
+                font-size: 14px;
+            }
+            .btn-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1> Welcome to your Basket</h1>
+    {% if c|length==0 %}
+        <h2 style="text-align:center;">Your Cart is Empty</h2>
+        <div class="total-amount">
+            <a href="/">Add Products</a> 
+        </div>
+    {% else %}
+        <table>
+            <tr>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Product Quantity</th>
+                <th>Actions</th>
+            </tr>
+            {% for items in c %} 
+                <tr>
+                    <td>{{ items.c_name }}</td>
+                    <td>{{ items.c_price }}</td>
+                    <td>{{ items.c_quantity }}</td>
+                    <td class="btn-container">
+                        <a href="/cart/{{ items.c_id }}/add">Add</a>
+                        <a href="/cart/{{ items.c_id }}/delete">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    <div class="total-amount">
+        <h2>Total amount is {{ total }}</h2>
+        <a href="/">Home Page</a> 
+        <a href="/checkout"> Check Out</a>
+        <a href="/logout"> Log Out</a>
+    </div>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Category</title>
+    <link rel="stylesheet" href="add_cat.css">
+</head>
+<style>
+    
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f6fa;
+  }
+  
+  form {
+    max-width: 400px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  form div {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  input[type="text"],
+  input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  input[type="file"] {
+    padding: 10px;
+   
+  }
+  
+  input[type="submit"] {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+ 
+  .error {
+    color: #ff0000;
+    font-size: 14px;
+  }
+  
+ 
+  @media (max-width: 480px) {
+    form {
+      max-width: 300px;
+    }
+  }
+  
+ 
+  
+</style>
+<body>
+    <form action="/admin/add" method="POST" id="ad-form"enctype="multipart/form-data">
+        <div>
+            <label><h3>Category Name</h3></label>
+            <input type="text"  name="category_name" required/>
+        </div>
+        <div>
+          <label><h3></h3> Upload the Image</label></h3></label>
+            <input type="file" name="the_image" required/>
+            <input type="submit" value="Upload"></p>
+        </div>
+      </form>
+      
+</body>
+</html>

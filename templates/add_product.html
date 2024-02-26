@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+</head>
+<style>
+    
+body, html {
+    height: 100%;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    margin: 0;
+  }
+  
+  .container {
+    max-width: 400px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  input[type="file"] {
+    padding: 8px;
+  }
+  
+  button[type="submit"] {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+</style>
+<body>
+    <form action="/{{cat_id}}/add_product" method="POST" id="ad-form" enctype="multipart/form-data">
+        <div>
+            <label for="name">Product Name:</label>
+            <input type="text" name="name" id="name" required>
+        </div>
+        <div>
+            <label for="quantity">Product Quantity:</label>
+            <input type="number" min="0" name="quantity" id="quantity" required>
+        </div>
+        <div>
+            <label for="price">Price:</label>
+            <input type="number" min="0" name="price" id="price" required>
+        </div>
+        <div>
+            <label for="expiry_date">Expiry Date:</label>
+            <input type="date" name="expiry_date" id="expiry_date" required>
+        </div>
+        <div>
+            <label for="the_image">Upload the Image:</label>
+            <input type="file" name="the_image" id="the_image" accept="image/*" required>
+        </div>
+
+
+        <div>
+            <button type="submit">Add Product</button>
+        </div>
+    </form>
+</body>
+</html>

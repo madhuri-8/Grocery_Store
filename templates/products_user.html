@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Products of the category {{name}}</h1>
+        <h3>Product List</h3>
+        {% if p|length == 0 %}
+        <h5>No Products found</h5>
+        {% else %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>SL NO</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Expiry Date</th>
+                    <th> Images</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for products in p %}
+                <tr>
+                    <td>{{ products.product_id }}</td>
+                    <td>{{ products.product_name }}</td>
+                    <td>{{ products.product_price }}</td>
+                    <td>{{ products.product_quantity }}</td>
+                    <td>{{ products.expiry_date }}</td>
+                    <td><img src="static/Product_image/{{ products.product_name }}.jpg" alt="{{ products.product_name }}" width="120" height="90" /></td>
+                    {% if products.product_quantity !=0 %}
+                        <td>
+                            <a href="/add_to_cart/{{ products.product_id }}" class="btn btn-danger btn-sm">ADD TO CART</a>
+                        </td>
+                    {% else %}
+                    <td>
+                        OUT OF STOCK
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+        <div class="d-flex justify-content-between">
+            <a href="/" class="btn btn-secondary">Go to Home Page</a>
+        </div>
+    </div>
+</body>
+</html>

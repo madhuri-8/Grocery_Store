@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color:rgb(255, 255, 255)
+        }
+
+
+        h1, h3, h5 {
+            text-align: center;
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+
+        td > a {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+
+        button {
+            background-color: #022f03;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+
+        @media screen and (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome Back</h1>
+    <h3>Category List</h3>
+    {% if cat|length==0 %}
+    <h5>No Category found. Add the category now?</h5>
+    
+    {% else %}
+
+
+    <table>
+        <tr>
+            
+            <th>Category Name</th>
+            <th>Actions</th>
+        </tr>
+        {% for categories in cat %} 
+            <tr>
+               
+                <td><h4>{{ categories.category_name }}</h4></td>
+                <td>
+                    <a href="/admin/{{ categories.category_id }}/delete">
+                        <button>Delete</button>
+                    </a>
+
+
+                    <a href="/admin/{{ categories.category_id }}/update">
+                        <button>Update</button>
+                    </a>
+                    <a href="/products/{{categories.category_id}}">
+                        <button>Products</button>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    
+    {% endif %}
+    <div>
+        <a href="/admin/add">
+            <button>Add Category</button>
+        </a>
+    </div>
+    <div>
+        <a href="/logout">
+            <button>Log Out</button>
+        </a>
+    </div>
+</body>
+</html>

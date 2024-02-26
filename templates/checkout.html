@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .checkout-image {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .redirect-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align: center;"> Your Products will be Dispatched in few hours.</h2>
+  <h3 style="text-align: center;"> Please pay the amount Rupees {{total}}</h3>
+  <h2 style="text-align: center;"> Thanks for shopping {{ username }}</h2>
+  
+  <div class="container">
+    <!-- Checkout Image -->
+    <img class="checkout-image" src="/static/checkout.gif" alt="Checkout Image">
+
+    <!-- Redirect Button -->
+    <button class="redirect-button">
+      <a href="/logout" class="button">Logout</a>
+    </button>
+  </div>
+</body>
+</html>
